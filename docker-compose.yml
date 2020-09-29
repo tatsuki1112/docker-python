@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+ python:
+  build: ./python
+  volumes:
+    - ./src/:/var/www/html
+  tty: true
+
+ nginx:
+   build: ./nginx
+   ports:
+    - "8080:80"
+   volumes:
+     - ./src:/var/www/html
+
+ mysql:
+    build: ./mysql
+    ports:
+      - "13306:3306"
+    volumes:
+      - ./src:/var/lib/mysql
